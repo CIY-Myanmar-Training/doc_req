@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Level-Up Request — ScopeIT Academy</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Source+Sans+3:wght@300;400;600;700&display=swap');
+:root{--navy:#0B1F3A;--gold:#B8912A;--teal:#016B78;--light:#E4DFD4;--cream:#FAF8F3;--mid:#7A7060;--red:#8B1A1A;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Source Sans 3',sans-serif;background:#E8E4DC;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:40px 20px 80px;}
+.topbar{width:100%;max-width:620px;background:var(--navy);padding:14px 28px;border-bottom:3px solid var(--gold);border-radius:4px 4px 0 0;margin-bottom:0;}
+.topbar h1{font-family:'Playfair Display',serif;font-size:17px;color:#fff;}
+.topbar p{font-size:11px;color:#8A9BB0;margin-top:2px;letter-spacing:1px;text-transform:uppercase;}
+.card{width:100%;max-width:620px;background:#fff;border:1px solid var(--light);box-shadow:0 4px 24px rgba(11,31,58,0.08);padding:32px;border-radius:0 0 4px 4px;}
+.field{margin-bottom:20px;}
+label{display:block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:var(--mid);margin-bottom:6px;}
+.req{color:var(--red);}
+input,select,textarea{width:100%;padding:10px 14px;border:1.5px solid var(--light);border-radius:3px;font-size:14px;font-family:'Source Sans 3',sans-serif;color:#1A1410;background:var(--cream);transition:border-color 0.2s;}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--teal);background:#fff;}
+select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%237A7060' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;}
+textarea{resize:vertical;min-height:80px;}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.divider{border:none;border-top:1px solid var(--light);margin:24px 0;}
+.section-label{font-family:'Playfair Display',serif;font-size:14px;color:var(--navy);margin-bottom:16px;font-weight:700;}
+.hint{font-size:11px;color:var(--mid);margin-top:4px;font-style:italic;}
+.btn{width:100%;padding:14px;background:var(--navy);color:#fff;border:none;border-radius:3px;font-family:'Playfair Display',serif;font-size:16px;font-weight:700;cursor:pointer;border-bottom:3px solid var(--gold);transition:all 0.2s;margin-top:8px;}
+.btn:hover{background:var(--teal);}
+.btn:disabled{background:#999;border-color:#777;cursor:not-allowed;}
+.success{display:none;text-align:center;padding:32px;background:#f0fff4;border:1.5px solid #155724;border-radius:3px;margin-top:16px;}
+.success h2{color:#155724;font-family:'Playfair Display',serif;font-size:20px;margin-bottom:8px;}
+.success p{color:#155724;font-size:14px;line-height:1.6;}
+@media(max-width:540px){.grid2{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <h1>ICT Educator Level-Up Request</h1>
+  <p>ScopeIT Academy × CIY.Club Myanmar</p>
+</div>
+
+<div class="card">
+  <div id="form-area">
+    <div class="section-label">Personal Information</div>
+    <div class="grid2">
+      <div class="field">
+        <label>Full Name <span class="req">*</span></label>
+        <input type="text" id="name" placeholder="e.g. Ma Thida Kyaw">
+      </div>
+      <div class="field">
+        <label>Employee ID <span class="req">*</span></label>
+        <input type="text" id="empid" placeholder="e.g. CIY0007">
+      </div>
+    </div>
+    <div class="grid2">
+      <div class="field">
+        <label>Email Address <span class="req">*</span></label>
+        <input type="email" id="email" placeholder="your@email.com">
+      </div>
+      <div class="field">
+        <label>Region / Centre <span class="req">*</span></label>
+        <input type="text" id="region" placeholder="e.g. Yangon Downtown">
+      </div>
+    </div>
+
+    <hr class="divider">
+    <div class="section-label">Level-Up Request</div>
+
+    <div class="field">
+      <label>Requesting Level-Up To <span class="req">*</span></label>
+      <select id="level">
+        <option value="">— Select Target Level —</option>
+        <option value="3">Level 3</option>
+        <option value="4">Level 4</option>
+        <option value="5">Level 5</option>
+        <option value="6">Level 6</option>
+      </select>
+    </div>
+
+    <hr class="divider">
+    <div class="section-label">Recommendation Letter Request</div>
+    <p class="hint" style="margin-bottom:16px;">Select two Academic Coordinators you would like a recommendation letter from.</p>
+
+    <div class="grid2">
+      <div class="field">
+        <label>AC Recommendation #1 <span class="req">*</span></label>
+        <select id="ac1">
+          <option value="">— Select AC —</option>
+          <option>AC Yangon — Ben</option>
+          <option>AC Yangon — Jade</option>
+          <option>AC Mandalay — Jimmy</option>
+          <option>AC Naypyidaw — K</option>
+          <option>AC Bago — Steve</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>AC Recommendation #2 <span class="req">*</span></label>
+        <select id="ac2">
+          <option value="">— Select AC —</option>
+          <option>AC Yangon — Ben</option>
+          <option>AC Yangon — Jade</option>
+          <option>AC Mandalay — Jimmy</option>
+          <option>AC Naypyidaw — K</option>
+          <option>AC Bago — Steve</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Supporting Statement</label>
+      <textarea id="statement" placeholder="Briefly describe your readiness for this level-up (optional)"></textarea>
+    </div>
+
+    <button class="btn" id="submit-btn" onclick="submitRequest()">Submit Level-Up Request</button>
+  </div>
+
+  <div class="success" id="success-msg">
+    <h2>✓ Request Submitted</h2>
+    <p>Your level-up request has been received.<br>All Academic Coordinators have been notified.<br><br>You will receive an email with the result within <strong>5 working days</strong>.</p>
+  </div>
+</div>
+
+<script>
+const APPS_SCRIPT_URL = "YOUR_APPS_SCRIPT_URL"; // replace after deploying Apps Script
+
+async function submitRequest() {
+  const name     = document.getElementById('name').value.trim();
+  const empid    = document.getElementById('empid').value.trim();
+  const email    = document.getElementById('email').value.trim();
+  const region   = document.getElementById('region').value.trim();
+  const level    = document.getElementById('level').value;
+  const ac1      = document.getElementById('ac1').value;
+  const ac2      = document.getElementById('ac2').value;
+  const statement= document.getElementById('statement').value.trim();
+
+  if (!name || !empid || !email || !region || !level || !ac1 || !ac2) {
+    alert('Please fill in all required fields.'); return;
+  }
+  if (ac1 === ac2) { alert('Please select two different ACs.'); return; }
+
+  const btn = document.getElementById('submit-btn');
+  btn.textContent = 'Submitting…'; btn.disabled = true;
+
+  const deadline = new Date();
+  deadline.setDate(deadline.getDate() + 7); // 5 working days ≈ 7 calendar days
+  const deadlineStr = deadline.toISOString().split('T')[0];
+
+  const payload = { name, empid, email, region, level, ac1, ac2, statement, deadline: deadlineStr, submitted: new Date().toISOString() };
+
+  try {
+    await fetch(APPS_SCRIPT_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    document.getElementById('form-area').style.display = 'none';
+    document.getElementById('success-msg').style.display = 'block';
+  } catch(e) {
+    alert('Submission failed. Please try again.'); btn.textContent = 'Submit Level-Up Request'; btn.disabled = false;
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AC Assessment — ScopeIT Academy</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Source+Sans+3:wght@300;400;600;700&display=swap');
+:root{--navy:#0B1F3A;--gold:#B8912A;--teal:#016B78;--light:#E4DFD4;--cream:#FAF8F3;--mid:#7A7060;--red:#8B1A1A;--green:#155724;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Source Sans 3',sans-serif;background:#E8E4DC;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:40px 20px 80px;}
+.topbar{width:100%;max-width:660px;background:var(--navy);padding:14px 28px;border-bottom:3px solid var(--gold);border-radius:4px 4px 0 0;}
+.topbar h1{font-family:'Playfair Display',serif;font-size:17px;color:#fff;}
+.topbar p{font-size:11px;color:#8A9BB0;margin-top:2px;letter-spacing:1px;text-transform:uppercase;}
+.card{width:100%;max-width:660px;background:#fff;border:1px solid var(--light);box-shadow:0 4px 24px rgba(11,31,58,0.08);padding:32px;border-radius:0 0 4px 4px;}
+.info-box{background:var(--cream);border:1px solid var(--light);border-radius:3px;padding:16px 20px;margin-bottom:24px;font-size:13px;line-height:1.8;}
+.info-box strong{color:var(--navy);}
+.field{margin-bottom:20px;}
+label{display:block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:var(--mid);margin-bottom:6px;}
+input,select,textarea{width:100%;padding:10px 14px;border:1.5px solid var(--light);border-radius:3px;font-size:14px;font-family:'Source Sans 3',sans-serif;color:#1A1410;background:var(--cream);transition:border-color 0.2s;}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--teal);background:#fff;}
+select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%237A7060' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;}
+textarea{resize:vertical;min-height:90px;}
+.divider{border:none;border-top:1px solid var(--light);margin:24px 0;}
+.section-label{font-family:'Playfair Display',serif;font-size:14px;color:var(--navy);margin-bottom:16px;font-weight:700;}
+.criteria-table{width:100%;border-collapse:collapse;margin-bottom:20px;}
+.criteria-table th{background:var(--navy);color:#fff;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.7px;padding:8px 12px;text-align:left;}
+.criteria-table td{padding:10px 12px;border-bottom:1px solid var(--light);font-size:13px;vertical-align:middle;}
+.criteria-table tr:nth-child(even) td{background:var(--cream);}
+.criteria-table select{width:120px;padding:6px 8px;font-size:12px;}
+.decision-row{display:flex;gap:16px;margin-bottom:20px;}
+.decision-btn{flex:1;padding:14px;border:2px solid var(--light);border-radius:3px;background:#fff;font-size:15px;font-weight:700;cursor:pointer;transition:all 0.2s;font-family:'Source Sans 3',sans-serif;}
+.decision-btn.approve{border-color:#155724;color:#155724;}
+.decision-btn.approve.selected{background:#155724;color:#fff;}
+.decision-btn.reject{border-color:var(--red);color:var(--red);}
+.decision-btn.reject.selected{background:var(--red);color:#fff;}
+.btn{width:100%;padding:14px;background:var(--navy);color:#fff;border:none;border-radius:3px;font-family:'Playfair Display',serif;font-size:16px;font-weight:700;cursor:pointer;border-bottom:3px solid var(--gold);transition:all 0.2s;margin-top:8px;}
+.btn:hover{background:var(--teal);}
+.btn:disabled{background:#999;border-color:#777;cursor:not-allowed;}
+.success{display:none;text-align:center;padding:32px;background:#f0fff4;border:1.5px solid #155724;border-radius:3px;}
+.success h2{color:#155724;font-family:'Playfair Display',serif;font-size:20px;margin-bottom:8px;}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <h1>Academic Coordinator Assessment</h1>
+  <p>ScopeIT Academy × CIY.Club Myanmar</p>
+</div>
+
+<div class="card">
+  <div id="assess-area">
+    <div class="info-box" id="request-info">
+      <strong>Loading request details…</strong>
+    </div>
+
+    <div class="field">
+      <label>Your Name (Academic Coordinator)</label>
+      <input type="text" id="ac-name" placeholder="Your full name">
+    </div>
+
+    <hr class="divider">
+    <div class="section-label">Assessment Criteria</div>
+
+    <table class="criteria-table">
+      <thead><tr><th>Criteria</th><th>Rating</th></tr></thead>
+      <tbody>
+        <tr><td>Teaching quality & delivery</td><td><select id="c1"><option value="">—</option><option>Excellent</option><option>Good</option><option>Satisfactory</option><option>Needs Improvement</option></select></td></tr>
+        <tr><td>Module knowledge & understanding</td><td><select id="c2"><option value="">—</option><option>Excellent</option><option>Good</option><option>Satisfactory</option><option>Needs Improvement</option></select></td></tr>
+        <tr><td>Student engagement & management</td><td><select id="c3"><option value="">—</option><option>Excellent</option><option>Good</option><option>Satisfactory</option><option>Needs Improvement</option></select></td></tr>
+        <tr><td>Professionalism & reliability</td><td><select id="c4"><option value="">—</option><option>Excellent</option><option>Good</option><option>Satisfactory</option><option>Needs Improvement</option></select></td></tr>
+        <tr><td>Readiness for next level</td><td><select id="c5"><option value="">—</option><option>Excellent</option><option>Good</option><option>Satisfactory</option><option>Needs Improvement</option></select></td></tr>
+      </tbody>
+    </table>
+
+    <div class="field">
+      <label>Comments / Recommendation Letter Notes</label>
+      <textarea id="comments" placeholder="Write your assessment comments or recommendation notes here…"></textarea>
+    </div>
+
+    <hr class="divider">
+    <div class="section-label">Final Decision</div>
+    <div class="decision-row">
+      <button class="decision-btn approve" id="btn-approve" onclick="setDecision('Approved')">✓ Approve</button>
+      <button class="decision-btn reject" id="btn-reject" onclick="setDecision('Rejected')">✗ Reject</button>
+    </div>
+
+    <button class="btn" id="submit-btn" onclick="submitAssessment()">Submit Assessment</button>
+  </div>
+
+  <div class="success" id="success-msg">
+    <h2>✓ Assessment Submitted</h2>
+    <p>Thank you. Your assessment has been recorded.<br>The coach will be notified once all assessments are complete.</p>
+  </div>
+</div>
+
+<script>
+const APPS_SCRIPT_URL = "YOUR_APPS_SCRIPT_URL";
+let decision = "";
+let requestId = "";
+
+// Read request ID from URL param
+const params = new URLSearchParams(window.location.search);
+requestId = params.get('id') || '';
+
+// Load request info
+window.onload = async function() {
+  if (!requestId) { document.getElementById('request-info').innerHTML = '<strong style="color:red">No request ID found in URL.</strong>'; return; }
+  try {
+    const res = await fetch(`${APPS_SCRIPT_URL}?action=getRequest&id=${requestId}`);
+    const data = await res.json();
+    document.getElementById('request-info').innerHTML = `
+      <strong>Coach:</strong> ${data.name} &nbsp;|&nbsp;
+      <strong>Employee ID:</strong> ${data.empid} &nbsp;|&nbsp;
+      <strong>Centre:</strong> ${data.region}<br>
+      <strong>Requesting:</strong> Level ${data.level} &nbsp;|&nbsp;
+      <strong>Deadline:</strong> ${data.deadline}
+    `;
+  } catch(e) {
+    document.getElementById('request-info').innerHTML = '<strong>Could not load request. Check your link.</strong>';
+  }
+};
+
+function setDecision(d) {
+  decision = d;
+  document.getElementById('btn-approve').classList.toggle('selected', d === 'Approved');
+  document.getElementById('btn-reject').classList.toggle('selected', d === 'Rejected');
+}
+
+async function submitAssessment() {
+  const acName   = document.getElementById('ac-name').value.trim();
+  const comments = document.getElementById('comments').value.trim();
+  const ratings  = ['c1','c2','c3','c4','c5'].map(id => document.getElementById(id).value);
+
+  if (!acName) { alert('Please enter your name.'); return; }
+  if (ratings.some(r => !r)) { alert('Please rate all criteria.'); return; }
+  if (!decision) { alert('Please select Approve or Reject.'); return; }
+
+  const btn = document.getElementById('submit-btn');
+  btn.textContent = 'Submitting…'; btn.disabled = true;
+
+  const payload = {
+    action: 'submitAssessment', requestId, acName, decision, comments,
+    ratings: { teaching: ratings[0], knowledge: ratings[1], engagement: ratings[2], professionalism: ratings[3], readiness: ratings[4] },
+    submittedAt: new Date().toISOString()
+  };
+
+  try {
+    await fetch(APPS_SCRIPT_URL, { method:'POST', mode:'no-cors', headers:{'Content-Type':'application/json'}, body: JSON.stringify(payload) });
+    document.getElementById('assess-area').style.display = 'none';
+    document.getElementById('success-msg').style.display = 'block';
+  } catch(e) {
+    alert('Submission failed. Please try again.'); btn.textContent = 'Submit Assessment'; btn.disabled = false;
+  }
+}
+</script>
+</body>
+</html>
